@@ -94,7 +94,7 @@
 
 # 2 数据库设计
 
-### 2.1 表
+### 2.1 表设计
 
 ##### 1. Customer
 
@@ -136,16 +136,16 @@
 
 入住信息表（入住信息编号、客房编号、入住人身份证号、入住日期、离店日期、状态）
 
-| 属性        | 数据类型    | 非空  | 主键 | 备注                                           |
-| ----------- | ----------- | ----- | ---- | ---------------------------------------------- |
-| checkinId   | VARCHAR(30) | Y     |      | （一起开房的人此字段相同）格式：yyyy-MM-dd-num |
-| roomId      | VARCHAR(30) | Y     |      | 外键，参照Room表                               |
-| customerId  | VARCHAR(30) | Y     |      | 外键，参照Customer表                           |
-| checkinDate | TimeStamp   | Y     |      | 真实入住时间                                   |
-| leaveDate   | TimeStamp   |       |      | 真实退房时间                                   |
-| state       | VARCHAR(30) | Y     |      | 入住中/续住/已退房                             |
-| number      | int         | 默认1 |      | 入住人数                                       |
-| UUID        | VARCHAR(30) |       | Y    | 只是主键，没有意义                             |
+| 属性        | 数据类型    | 非空     | 主键 | 备注                                           |
+| ----------- | ----------- | -------- | ---- | ---------------------------------------------- |
+| checkinId   | VARCHAR(30) | Y        |      | （一起开房的人此字段相同）格式：yyyy-MM-dd-num |
+| roomId      | VARCHAR(30) | Y        |      | 外键，参照Room表                               |
+| customerId  | VARCHAR(30) | Y        |      | 外键，参照Customer表                           |
+| checkinDate | TimeStamp   | Y        |      | 真实入住时间                                   |
+| leaveDate   | TimeStamp   |          |      | 真实退房时间                                   |
+| state       | VARCHAR(30) | Y        |      | 入住中/续住/已退房                             |
+| number      | int         | 默认1    |      | 入住人数                                       |
+| UUID        | int         | auto_inc | Y    | 只是主键，没有意义                             |
 
 ##### 5. Admin
 
@@ -157,3 +157,72 @@
 | name       | VARCHAR(30) | Y      |      |         |
 | password        | VARCHAR(30)     | Y      |      |     |
 | rank        | VARCHAR(30)     | Y      |      |   '经理','职员'  |
+
+### 2.2表数据
+
+```sql
+show tables ;
+create table if not exists customer(
+       customerId varchar(30) primary key ,
+       name varchar(30),
+       sex char,
+       phoneNum int,
+       discount int default 10
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into customer values('100001','李扬宁','F',17772870,8);
+
+
+
+create table if not exists room(
+    roomId varchar(30) primary key ,
+    size varchar(30) default '标准间',
+    state varchar(30) default '空闲' comment '维修，入住，空闲',
+    price int not null comment '原价'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into room values ('101','标准间','空闲',200);
+
+
+create table if not exists `order`
+(
+       orderId varchar(30) primary key ,
+       roomId varchar(30) default '标准间' references room(roomId),
+       reserveDate timestamp comment '生成订单的时间',
+       checkinDate timestamp comment '拟入住的时间',
+       customerId varchar(30) references customer(customerId),
+       price numeric(6,2)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+# datetime数据类型：
+# ①插入格式中日期和时间符号-和：(要带都带，不带都不带，否则报错)，带了中间必须留有空格 如：insert into dt © values (“2019-1-12 12:18:15”);
+# ②直接输入对应位数14位数如：insert into dt © values (“20191012121315”);
+
+insert into `order` values('20220616001','101',NOW(),'20220617111111',100001,160);
+
+# drop table checkin;
+create table if not exists checkin(
+      checkinId varchar(30) comment '（一起开房的人此字段相同）格式：yyyy-MM-dd-num',
+      roomId varchar(30) references room(roomId),
+      customerId varchar(30) references customer(customerId),
+      checkInDate timestamp comment '真实入住时间',
+      leaveDate timestamp comment '真实退房时间',
+      state varchar(30) default '入住中',
+      number int comment '入住人数',
+      UUID int primary key auto_increment
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into checkin values ('20220616001','101','100001','20220616111111',null,'入住中',1,null);
+
+
+create table if not exists admin(
+    adminId varchar(30) primary key ,
+    name varchar(30),
+    password varchar(30),
+    `rank` varchar(30) comment '经理，职员'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into admin values ('1001','张天浩','123123','经理');
+```
+
