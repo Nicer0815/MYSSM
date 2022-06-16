@@ -1,6 +1,7 @@
 package com.ning.controller;
 
 
+import com.ning.entity.Room;
 import com.ning.service.AdminService;
 import com.ning.service.RoomService;
 import com.ning.utils.MessageAndData;
@@ -27,4 +28,19 @@ public class RoomController {
         return messageAndData;
     }
 
+    @RequestMapping(value = "/new",method = RequestMethod.GET)
+    public MessageAndData newRoom(String roomId,String size,String state,String price) {
+        MessageAndData messageAndData;
+        Room room = new Room(roomId,size,state,Integer.parseInt(price));
+        Room temp = roomService.queryById(roomId);
+        if(temp!=null){
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("房间号已存在");
+        }else {
+            roomService.addRoom(room);
+            messageAndData = MessageAndData.success();
+            messageAndData.setMessage("房间设立成功");
+        }
+        return messageAndData;
+    }
 }

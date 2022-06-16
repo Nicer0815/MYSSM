@@ -1,6 +1,7 @@
 package com.ning.controller;
 
 import com.ning.dao.CustomerMapper;
+import com.ning.entity.Customer;
 import com.ning.service.CustomerService;
 import com.ning.utils.MessageAndData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ public class CustomerController {
     @Qualifier("customerServiceImpl")
     private CustomerService customerService;
 
-    //基本结构建立完毕，/xxx/all 对应xxx.queryAll() 返回对应json
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public MessageAndData queryAll() {
         System.out.println(customerService);
@@ -25,5 +25,37 @@ public class CustomerController {
         messageAndData.add("list",customerService.queryAll()).setMessage("返回customer列表");
         return messageAndData;
     }
+
+    @RequestMapping(value = "/register",method = RequestMethod.GET)
+    public MessageAndData register(String customerId,String name,String sex,String phoneNum,String discount) {
+        Customer customer = new Customer(customerId,name,sex,Integer.parseInt(phoneNum),Integer.parseInt(discount));
+        MessageAndData messageAndData;
+        Customer temp = customerService.queryById(customerId);
+        if(temp != null){
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("用户名已存在");
+        }else {
+            messageAndData = MessageAndData.success();
+            customerService.addCustomer(customer);
+            messageAndData.setMessage("注册成功");
+        }
+        return messageAndData;
+    }
+
+    @RequestMapping(value = "/query",method = RequestMethod.GET)
+    public MessageAndData queryById(String customerId) {
+        MessageAndData messageAndData;
+        Customer customer = customerService.queryById(customerId);
+        if(customer == null){
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("查无此人");
+        }else{
+            messageAndData = MessageAndData.success();
+            messageAndData.setMessage("找到了");
+            messageAndData.add("customer",customer);
+        }
+        return messageAndData;
+    }
+
 
 }

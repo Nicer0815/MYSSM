@@ -3,6 +3,7 @@ package com.ning.service;
 import com.ning.entity.Order;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 public interface OrderService {
@@ -12,4 +13,6 @@ public interface OrderService {
     int updateOrder(Order order);
     Order queryById(String orderId);
     List<Order> queryAll();
+
+    List<Order> queryToday();
 }

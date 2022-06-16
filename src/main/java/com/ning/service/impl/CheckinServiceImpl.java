@@ -5,6 +5,7 @@ import com.ning.entity.Checkin;
 import com.ning.service.CheckinService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 public class CheckinServiceImpl implements CheckinService {
@@ -42,5 +43,10 @@ public class CheckinServiceImpl implements CheckinService {
     @Override
     public int updateCheckin(Checkin checkin) {
         return checkinMapper.updateCheckin(checkin);
+    }
+
+    @Override
+    public List<Checkin> queryToday(Date today) {
+        return checkinMapper.queryToday(today);
     }
 }

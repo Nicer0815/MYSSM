@@ -51,4 +51,8 @@
     </select>
 
 
+    <select id="queryToday" parameterType="Date" resultType="Checkin">
+        select * from checkin where checkInDate >= #{today}
+    </select>
+
 </mapper>

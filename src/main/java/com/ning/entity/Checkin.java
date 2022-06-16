@@ -1,5 +1,7 @@
 package com.ning.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -11,6 +13,21 @@ import java.io.Serializable;
  */
 public class Checkin implements Serializable {
     private static final long serialVersionUID = -60388755331493351L;
+
+    public Checkin(String checkinId, String roomId, String customerId, Date checkinDate, Date leaveDate, String state, Integer number, Integer UUID) {
+        this.checkinId = checkinId;
+        this.roomId = roomId;
+        this.customerId = customerId;
+        this.checkinDate = checkinDate;
+        this.leaveDate = leaveDate;
+        this.state = state;
+        this.number = number;
+        this.UUID = UUID;
+    }
+
+    public Checkin() {
+    }
+
     /**
      * （一起开房的人此字段相同）格式：yyyy-MM-dd-num
      */
@@ -22,10 +39,12 @@ public class Checkin implements Serializable {
     /**
      * 真实入住时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date checkinDate;
     /**
      * 真实退房时间
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date leaveDate;
     
     private String state;

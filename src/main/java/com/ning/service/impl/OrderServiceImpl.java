@@ -3,8 +3,10 @@ package com.ning.service.impl;
 import com.ning.dao.OrderMapper;
 import com.ning.entity.Order;
 import com.ning.service.OrderService;
+import com.ning.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -43,5 +45,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> queryAll() {
         return orderMapper.queryAll();
+    }
+
+    @Override
+    public List<Order> queryToday() {
+        return orderMapper.queryToday(DateUtils.getTodayBegin());
     }
 }

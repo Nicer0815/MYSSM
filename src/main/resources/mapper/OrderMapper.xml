@@ -39,6 +39,9 @@
         select * from `order`
     </select>
 
+    <select id="queryToday" parameterType="Date" resultType="Order">
+        select * from `order` where reserveDate >= #{today}
+    </select>
 
 
 </mapper>

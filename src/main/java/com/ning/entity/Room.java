@@ -13,7 +13,7 @@ public class Room implements Serializable {
     
     private String roomId;
     private String size;
-    private String state;   //
+    private String state;
     private Integer price;
 
 
@@ -49,5 +49,14 @@ public class Room implements Serializable {
         this.price = price;
     }
 
+    public Room() {
+    }
+
+    public Room(String roomId, String size, String state, Integer price) {
+        this.roomId = roomId;
+        this.size = size;
+        this.state = state;
+        this.price = price;
+    }
 }
 

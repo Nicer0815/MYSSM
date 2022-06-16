@@ -1,6 +1,7 @@
 package com.ning.dao;
 import com.ning.entity.Order;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrderMapper {
@@ -10,4 +11,5 @@ public interface OrderMapper {
     int updateOrder(Order order);
     Order queryById(String orderId);
     List<Order> queryAll();
+    List<Order> queryToday(Date today);
 }

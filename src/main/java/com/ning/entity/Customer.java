@@ -21,6 +21,16 @@ public class Customer implements Serializable {
     
     private Integer discount;
 
+    public Customer(String customerId, String name, String sex, Integer phoneNum, Integer discount) {
+        this.customerId = customerId;
+        this.name = name;
+        this.sex = sex;
+        this.phoneNum = phoneNum;
+        this.discount = discount;
+    }
+
+    public Customer() {
+    }
 
     public String getCustomerId() {
         return customerId;

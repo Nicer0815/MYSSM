@@ -62,5 +62,15 @@ public class Order implements Serializable {
         this.price = price;
     }
 
+    public Order() {}
+
+    public Order(String orderId, String roomId, Date reserveDate, Date checkinDate, String customerId, Double price) {
+        this.orderId = orderId;
+        this.roomId = roomId;
+        this.reserveDate = reserveDate;
+        this.checkinDate = checkinDate;
+        this.customerId = customerId;
+        this.price = price;
+    }
 }
 

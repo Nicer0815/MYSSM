@@ -2,6 +2,7 @@ package com.ning.dao;
 
 import com.ning.entity.Customer;
 
+import java.util.Date;
 import java.util.List;
 
 public interface CustomerMapper {
@@ -10,4 +11,5 @@ public interface CustomerMapper {
     Customer queryById(String customerId);
     int updateCustomer(Customer customer);
     List<Customer> queryAll();
+
 }

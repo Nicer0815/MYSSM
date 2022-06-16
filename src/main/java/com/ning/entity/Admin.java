@@ -54,6 +54,16 @@ public class Admin implements Serializable {
         this.rank = rank;
     }
 
+    public Admin(String adminId, String name, String password, String rank) {
+        this.adminId = adminId;
+        this.name = name;
+        this.password = password;
+        this.rank = rank;
+    }
+
+    public Admin() {
+    }
+
     @Override
     public String toString() {
         return "Admin{" +
