@@ -156,4 +156,4 @@
 | adminID | VARCHAR(30) | Y      | Y    |         |
 | name       | VARCHAR(30) | Y      |      |         |
 | password        | VARCHAR(30)     | Y      |      |     |
-
+| rank        | VARCHAR(30)     | Y      |      |   '经理','职员'  |
