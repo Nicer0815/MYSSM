@@ -1,6 +1,10 @@
-[
-  {
-    "state": "100",
-    "rank": "经理"
+
+
+
+{"statusCode":200,
+  "message":"获取房间信息成功",
+  "dataZone":{
+    "busyList":[{"roomId":"102","size":"标准间","state":"入住","price":200},{"roomId":"103","size":"标准间","state":"入住","price":200}],
+  "fixList":[{"roomId":"209","size":"大床房","state":"维修","price":230},{"roomId":"210","size":"大床房","state":"维修","price":230}]
   }
-]
+}

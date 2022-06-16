@@ -10,4 +10,7 @@ public interface RoomMapper {
     int updateRoom(Room room);
     Room queryById(String roomId);
     List<Room> queryAll();
+    List<Room> queryRest();
+    List<Room> queryBusy();
+    List<Room> queryFix();
 }

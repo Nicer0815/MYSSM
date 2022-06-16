@@ -55,4 +55,8 @@
         select * from checkin where checkInDate >= #{today}
     </select>
 
+    <select id="queryTodayLeave" parameterType="Date" resultType="Checkin">
+        select * from checkin where checkin.leaveDate >= #{today}
+    </select>
+
 </mapper>

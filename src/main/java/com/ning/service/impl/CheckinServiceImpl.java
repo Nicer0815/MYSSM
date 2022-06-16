@@ -3,6 +3,7 @@ package com.ning.service.impl;
 import com.ning.dao.CheckinMapper;
 import com.ning.entity.Checkin;
 import com.ning.service.CheckinService;
+import com.ning.utils.DateUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -48,5 +49,10 @@ public class CheckinServiceImpl implements CheckinService {
     @Override
     public List<Checkin> queryToday(Date today) {
         return checkinMapper.queryToday(today);
+    }
+
+    @Override
+    public List<Checkin> queryTodayLeave() {
+        return checkinMapper.queryTodayLeave(DateUtils.getTodayBegin());
     }
 }

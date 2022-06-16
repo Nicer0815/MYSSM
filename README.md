@@ -324,3 +324,21 @@ INSERT INTO checkin (`checkinId`, `roomId`, `customerId`, `checkInDate`, `number
 
 ```
 
+# 3 前后端沟通
+
+### 大杂烩dataZone：
+
+| 变量名        | 含义                     | 备注                                                         |
+| ------------- | ------------------------ | ------------------------------------------------------------ |
+| admin         | 管理员登录信息           | "admin"：{"adminId":"1001","name":"张天浩","password":"123123","rank":"经理"} |
+|               |                          |                                                              |
+| orderToday    | 今日订单数，数字         | "orderToday":"10"                                            |
+| standardBusy  | 标准间占用数（不含维修） | 同理：singleBusy、bigBedBusy、tripleBusy、luxuryBusy（单人间，大床房，三人间，豪华套房） |
+| standardRest  | 标准间空闲数             | 同上 %Rest   以及 %Fix   eg：bigBedFix  ：大床房维修数       |
+| moneyToday    | 今日营收                 | 今日订单的price之和                                          |
+| standardPrice | 今日标准间房价           | 同理: singlePrice、bigBedPrice、triplePrice、luxuryPrice     |
+| checkinToday  | 今日入住数               | /checkin/today 的逻辑                                        |
+| leaveToday    | 今日离店数               | /checkin/today 的逻辑 用于字段leaveDate                      |
+| restToday     | 当前入住数               | 当前时刻的“入住状态”                                         |
+|               |                          |                                                              |
+

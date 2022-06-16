@@ -43,4 +43,19 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> queryAll() {
         return roomMapper.queryAll();
     }
+
+    @Override
+    public List<Room> queryRest() {
+        return roomMapper.queryRest();
+    }
+
+    @Override
+    public List<Room> queryBusy() {
+        return roomMapper.queryBusy();
+    }
+
+    @Override
+    public List<Room> queryFix() {
+        return roomMapper.queryFix();
+    }
 }

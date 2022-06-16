@@ -17,6 +17,17 @@
     <select id="queryAll" resultType="Room">
         select * from room
     </select>
+    <select id="queryRest" resultType="Room">
+        select * from room where state='空闲'
+    </select>
+
+    <select id="queryBusy" resultType="Room">
+        select * from room where state='入住'
+    </select>
+
+    <select id="queryFix" resultType="Room">
+        select * from room where state='维修'
+    </select>
 
     <select id="queryById" resultType="Room">
         select * from room where roomId=#{roomId}

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/room")
 public class RoomController {
@@ -41,6 +43,31 @@ public class RoomController {
             messageAndData = MessageAndData.success();
             messageAndData.setMessage("房间设立成功");
         }
+        return messageAndData;
+    }
+
+    @RequestMapping(value = "/rest",method = RequestMethod.GET)
+    public MessageAndData restRoom() {
+        MessageAndData messageAndData;
+
+        List<Room> list = roomService.queryRest();
+        messageAndData = MessageAndData.success();
+        messageAndData.setMessage("获取房间信息成功");
+        messageAndData.add("list",list);
+
+        return messageAndData;
+    }
+
+
+    @RequestMapping(value = "/busy",method = RequestMethod.GET)
+    public MessageAndData busyRoom() {
+        MessageAndData messageAndData;
+        List<Room> busyList = roomService.queryBusy();
+        List<Room> fixList = roomService.queryFix();
+        messageAndData = MessageAndData.success();
+        messageAndData.setMessage("获取房间信息成功");
+        messageAndData.add("busyList",busyList);
+        messageAndData.add("fixList",fixList);
         return messageAndData;
     }
 }

@@ -4,7 +4,6 @@ import com.ning.service.AdminService;
 import com.ning.utils.MessageAndData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -62,7 +61,6 @@ public class AdminController {
         }
         return messageAndData;
     }
-    //5张表的新增，查询，登录等
     @RequestMapping(value = "/register",method = RequestMethod.GET)
     public MessageAndData register(String username,String password,String name){
         MessageAndData messageAndData;

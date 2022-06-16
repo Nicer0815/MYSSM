@@ -14,4 +14,5 @@ public interface CheckinService {
     int updateCheckin(Checkin checkin);
 
     List<Checkin> queryToday(Date today);
+    List<Checkin> queryTodayLeave();
 }
