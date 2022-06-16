@@ -17,7 +17,18 @@
     <bean id="adminServiceImpl" class="com.ning.service.impl.AdminServiceImpl">
         <property name="adminMapper" ref="adminMapper"/>
     </bean>
-
+    <bean id="roomServiceImpl" class="com.ning.service.impl.RoomServiceImpl">
+        <property name="roomMapper" ref="roomMapper"/>
+    </bean>
+    <bean id="checkinServiceImpl" class="com.ning.service.impl.CheckinServiceImpl">
+        <property name="checkinMapper" ref="checkinMapper"/>
+    </bean>
+    <bean id="customerServiceImpl" class="com.ning.service.impl.CustomerServiceImpl">
+        <property name="customerMapper" ref="customerMapper"/>
+    </bean>
+    <bean id="orderServiceImpl" class="com.ning.service.impl.OrderServiceImpl">
+        <property name="orderMapper" ref="orderMapper"/>
+    </bean>
 
 
 

@@ -18,6 +18,10 @@
     <mappers>
         <mapper class="com.ning.dao.BookMapper"/>
         <mapper class="com.ning.dao.AdminMapper"/>
+        <mapper class="com.ning.dao.RoomMapper"/>
+        <mapper class="com.ning.dao.OrderMapper"/>
+        <mapper class="com.ning.dao.CustomerMapper"/>
+        <mapper class="com.ning.dao.CheckinMapper"/>
     </mappers>
 
 
