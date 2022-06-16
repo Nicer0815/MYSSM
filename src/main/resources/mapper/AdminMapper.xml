@@ -21,8 +21,6 @@
         values (#{adminId},#{name}, #{password}, #{rank})
     </insert>
 
-
-
     <!--通过主键修改数据-->
     <update id="update">
         update admin

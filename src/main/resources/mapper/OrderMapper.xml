@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ning.dao.OrderMapper">
+
+<!--    private String orderId;-->
+<!--    private String roomId;-->
+<!--    private Date reserveDate;//生成订单的时间-->
+<!--    private Date checkinDate;//拟入住的时间-->
+<!--    private String customerId;-->
+<!--    private Double price;-->
+
+
+
+    <update id="updateOrder" parameterType="Order">
+        update `order` set roomId=#{roomId}, reserveDate=#{reserveDate},
+                           checkinDate=#{checkinDate},customerId=#{customerId},price=#{price}
+                    where orderId=#{orderId}
+    </update>
+
+    <insert id="addOrder" parameterType="Order">
+        insert into `order`
+        values (#{orderId},#{roomId},#{reserveDate},#{checkinDate},#{customerId},#{price})
+    </insert>
+
+    <delete id="deleteOrder" parameterType="Order">
+        delete from `order` where orderId=#{orderId}
+    </delete>
+
+    <!--查询单个-->
+    <select id="queryById" resultType="Order">
+        select * from `order`
+        where orderId = #{orderId}
+    </select>
+
+
+    <select id="queryAll" resultType="Order">
+        select * from `order`
+    </select>
+
+
+
+</mapper>
