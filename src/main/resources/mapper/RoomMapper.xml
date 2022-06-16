@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ning.dao.RoomMapper">
+
+
+<!--int addRoom(Room room);-->
+<!--        int deleteRoom(Room room);-->
+<!--        int updateRoom(Room room);-->
+
+<!--    -->
+<!--    private String roomId;-->
+<!--    private String size;-->
+<!--    private String state;   //-->
+<!--    private Integer price;-->
+    <select id="queryAll" resultType="Room">
+        select * from room
+    </select>
+
+    <select id="queryById" resultType="Room">
+        select * from room where roomId=#{roomId}
+    </select>
+
+    <update id="updateRoom" parameterType="Room">
+        update room set size=#{size},state=#{state},price=#{price}
+                where roomId=#{roomId}
+    </update>
+
+    <delete id="deleteRoom" parameterType="Room">
+        delete from room where roomId=#{roomId}
+    </delete>
+
+    <insert id="addRoom" parameterType="Room">
+        insert into room values(#{roomId},#{size},#{state},#{price})
+    </insert>
+
+
+
+</mapper>

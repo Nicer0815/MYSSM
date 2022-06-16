@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ning.dao.CheckinMapper">
+<!--    int addCheckin(Checkin checkin);-->
+<!--    int deleteCheckin(Checkin checkin);-->
+<!--    Checkin queryById(String uuid);-->
+<!--    List<Checkin> queryAll();-->
+<!--    int updateCheckin(Checkin checkin);-->
+
+<!--    private String checkinId;-->
+<!--    private String roomId;-->
+<!--    private String customerId;-->
+<!--    /**-->
+<!--    * 真实入住时间-->
+<!--    */-->
+<!--    private Date checkinDate;-->
+<!--    /**-->
+<!--    * 真实退房时间-->
+<!--    */-->
+<!--    private Date leaveDate;-->
+<!--    private String state;-->
+<!--    /**-->
+<!--    * 入住人数-->
+<!--    */-->
+<!--    private Integer number;-->
+<!--    private Integer uuid;-->
+<!--    -->
+    <insert id="addCheckin" parameterType="Checkin">
+        insert into checkin (checkinId, roomId, customerId, checkInDate, leaveDate, state, number)
+        values (#{checkinId},#{roomId},#{customerId},#{checkInDate},#{leaveDate},#{state},#{number});
+    </insert>
+
+    <update id="updateCheckin" parameterType="Checkin">
+        update checkin set checkinId=#{checkinId} ,roomId=#{roomId},customerId=#{customerId},
+                           checkinDate=#{checkinDate},leaveDate=#{leaveDate},state=#{state},number=#{number}
+                    where UUID = #{UUID}
+    </update>
+
+    <delete id="deleteCheckin" parameterType="Checkin">
+        delete from checkin where UUID=#{UUID};
+    </delete>
+
+    <select id="queryById" resultType="Checkin">
+        select * from checkin where UUID=#{UUID}
+    </select>
+
+    <select id="queryAll" resultType="Checkin">
+        select * from checkin
+    </select>
+
+
+</mapper>

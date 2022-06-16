@@ -34,7 +34,7 @@ public class Checkin implements Serializable {
      */
     private Integer number;
     
-    private Integer uuid;
+    private Integer UUID;
 
 
     public String getCheckinId() {
@@ -93,12 +93,12 @@ public class Checkin implements Serializable {
         this.number = number;
     }
 
-    public Integer getUuid() {
-        return uuid;
+    public Integer getUUID() {
+        return UUID;
     }
 
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
+    public void setUUID(Integer UUID) {
+        this.UUID = UUID;
     }
 
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ning.dao.CustomerMapper">
+<!--int addCustomer(Customer customer);-->
+<!--        int deleteCustomer(Customer customer);-->
+<!--        Customer queryById(String customerId);-->
+<!--        int updateCustomer(Customer customer);-->
+<!--        List<Customer> queryAll();-->
+<!--    private String customerId;-->
+<!--    private String name;-->
+<!--    private String sex;-->
+<!--    private Integer phoneNum;-->
+<!--    private Integer discount;-->
+
+
+
+    <insert id="addCustomer" parameterType="Customer">
+        insert into customer values(#{customerId},#{name},#{sex},#{phoneNum},#{discount})
+    </insert>
+
+    <select id="queryAll" resultType="Customer">
+        select * from customer
+    </select>
+
+    <select id="queryById" resultType="Customer">
+        select * from customer where customerId=#{customerId}
+    </select>
+
+    <update id="updateCustomer" parameterType="Customer">
+        update customer set name=#{name},sex=#{sex},phoneNum=#{phoneNum},discount=#{discount}
+            where customerId=#{customerId}
+    </update>
+
+    <delete id="deleteCustomer" parameterType="Customer">
+        delete from customer where customerId=#{customerId}
+    </delete>
+
+
+</mapper>

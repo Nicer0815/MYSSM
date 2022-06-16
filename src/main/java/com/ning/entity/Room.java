@@ -12,7 +12,6 @@ public class Room implements Serializable {
     private static final long serialVersionUID = -53368864116188445L;
     
     private String roomId;
-    
     private String size;
     private String state;   //
     private Integer price;
