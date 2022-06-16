@@ -14,6 +14,9 @@
     <bean id="BookServiceImpl" class="com.ning.service.impl.BookServiceImpl">
         <property name="bookMapper" ref="bookMapper"/>
     </bean>
+    <bean id="adminServiceImpl" class="com.ning.service.impl.AdminServiceImpl">
+        <property name="adminMapper" ref="adminMapper"/>
+    </bean>
 
 
 

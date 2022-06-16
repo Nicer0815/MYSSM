@@ -1,67 +1,49 @@
 package com.ning.controller;
 import com.ning.entity.Admin;
 import com.ning.service.AdminService;
+import com.ning.utils.MessageAndData;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * (Admin)表控制层
- *
- * @author makejava
- * @since 2022-06-16 10:55:57
- */
-@RestController
-@RequestMapping("admin")
-public class AdminController {
-    /**
-     * 服务对象
-     */
 
+@RestController
+@RequestMapping("/admin")
+public class AdminController {
+
+    @Autowired
+    @Qualifier("adminServiceImpl")
     private AdminService adminService;
 
-
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("{id}")
-    public ResponseEntity<Admin> queryById(@PathVariable("id") String id) {
-        return ResponseEntity.ok(this.adminService.queryById(id));
+    @RequestMapping(value = "/all",method = RequestMethod.GET)
+    public MessageAndData queryAll() {
+        System.out.println(adminService);
+        System.out.println(adminService.queryAll());
+        MessageAndData messageAndData = MessageAndData.success();
+        messageAndData.add("list",adminService.queryAll()).setMessage("返回admin列表");
+        return messageAndData;
     }
-
-    /**
-     * 新增数据
-     *
-     * @param admin 实体
-     * @return 新增结果
-     */
-    @PostMapping
-    public ResponseEntity<Admin> add(Admin admin) {
-        return ResponseEntity.ok(this.adminService.insert(admin));
-    }
-
-    /**
-     * 编辑数据
-     *
-     * @param admin 实体
-     * @return 编辑结果
-     */
-    @PutMapping
-    public ResponseEntity<Admin> edit(Admin admin) {
-        return ResponseEntity.ok(this.adminService.update(admin));
-    }
-
-    /**
-     * 删除数据
-     *
-     * @param id 主键
-     * @return 删除是否成功
-     */
-    @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(String id) {
-        return ResponseEntity.ok(this.adminService.deleteById(id));
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public MessageAndData queryById(String uname,String pswd,String remember) {
+        System.out.println(adminService);
+        System.out.println(uname);
+        System.out.println(adminService.queryById(uname));
+        Admin admin = adminService.queryById(uname);
+        MessageAndData messageAndData;
+        if(admin == null){
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("查无此人");
+            return messageAndData;
+        }
+        if(admin.getPassword().equals(pswd)){
+            messageAndData = MessageAndData.success();
+            messageAndData.add("admin",admin).setMessage("密码正确");
+        }else{
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("密码错误");
+        }
+        return messageAndData;
     }
 
 }

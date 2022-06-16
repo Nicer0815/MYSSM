@@ -1,66 +1,53 @@
 package com.ning.service.impl;
 
 import com.ning.entity.Admin;
-import com.ning.dao.AdminDao;
-import com.ning.service.AdminService;
+import com.ning.dao.AdminMapper;
 import com.ning.service.AdminService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
-/**
- * (Admin)表服务实现类
- *
- * @author makejava
- * @since 2022-06-16 10:55:57
- */
+
+@Service
 public class AdminServiceImpl implements AdminService {
 
-    private AdminDao adminDao;
+    private AdminMapper adminMapper;
 
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param adminid 主键
-     * @return 实例对象
-     */
+    public AdminMapper getAdminMapper() {
+        return adminMapper;
+    }
+
+    public void setAdminMapper(AdminMapper adminMapper) {
+        this.adminMapper = adminMapper;
+    }
+
     @Override
-    public Admin queryById(String adminid) {
-        return this.adminDao.queryById(adminid);
+    public Admin queryById(String adminId) {
+
+        return this.adminMapper.queryById(adminId);
     }
 
 
-    /**
-     * 新增数据
-     *
-     * @param admin 实例对象
-     * @return 实例对象
-     */
     @Override
     public Admin insert(Admin admin) {
-        this.adminDao.insert(admin);
+        this.adminMapper.insert(admin);
         return admin;
     }
 
-    /**
-     * 修改数据
-     *
-     * @param admin 实例对象
-     * @return 实例对象
-     */
     @Override
     public Admin update(Admin admin) {
-        this.adminDao.update(admin);
+        this.adminMapper.update(admin);
         return this.queryById(admin.getAdminId());
     }
 
-    /**
-     * 通过主键删除数据
-     *
-     * @param adminid 主键
-     * @return 是否成功
-     */
     @Override
-    public boolean deleteById(String adminid) {
-        return this.adminDao.deleteById(adminid) > 0;
+    public List<Admin> queryAll() {
+        System.out.println("adminServiceImpl==>queryAll"+adminMapper);
+        return adminMapper.queryAll();
+    }
+
+    @Override
+    public boolean deleteById(String adminId) {
+        return this.adminMapper.deleteById(adminId) > 0;
     }
 }
