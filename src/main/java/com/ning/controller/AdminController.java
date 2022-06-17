@@ -26,11 +26,11 @@ public class AdminController {
         return messageAndData;
     }
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public MessageAndData queryById(String uname, String pswd, String remember,HttpSession session) {
+    public MessageAndData queryById(String username, String password, String remember,HttpSession session) {
         System.out.println(adminService);
-        System.out.println(uname);
-        System.out.println(adminService.queryById(uname));
-        Admin admin = adminService.queryById(uname);
+        System.out.println(username);
+        System.out.println(adminService.queryById(username));
+        Admin admin = adminService.queryById(username);
         MessageAndData messageAndData;
         if(admin == null){
             messageAndData = MessageAndData.error();
@@ -38,7 +38,7 @@ public class AdminController {
             return messageAndData;
         }
 
-        if(admin.getPassword().equals(pswd)){
+        if(admin.getPassword().equals(password)){
             messageAndData = MessageAndData.success();
             messageAndData.add("admin",admin).setMessage("密码正确");
             session.setAttribute("admin",admin);

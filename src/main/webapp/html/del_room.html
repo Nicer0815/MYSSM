@@ -9,7 +9,7 @@
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="/js/my_main.js"></script>
+    <script src="/js/my_del_customer.js"></script>
 </head>
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
 
@@ -22,16 +22,16 @@
     </a>
 
     <!-- 普通导航 -->
-    <ul class="nav col-lg-auto " id="function_opt">
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" id="function_opt">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">
                 客户管理
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="./add_customer.html">增加客户</a>
-                <a class="dropdown-item" href="./del_customer.html">删除客户</a>
-                <a class="dropdown-item" href="./change_customer.html">修改客户</a>
-                <a class="dropdown-item" href="./search_customer.html">查询客户</a>
+                <a class="dropdown-item" href="#">增加客户</a>
+                <a class="dropdown-item" href="#">删除客户</a>
+                <a class="dropdown-item" href="#">修改客户</a>
+                <a class="dropdown-item" href="#">查询客户</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -54,7 +54,6 @@
                 <a class="dropdown-item" href="#">删除客房</a>
                 <a class="dropdown-item" href="#">修改客房</a>
                 <a class="dropdown-item" href="#">查询客房</a>
-                <a class="dropdown-item" href="./all_.html">查看所有客房</a>
             </div>
         </li>
         <!--        下拉导航-->
@@ -69,6 +68,7 @@
                 <a class="dropdown-item" href="#">查询入住信息</a>
             </div>
         </li>
+
         <li class="nav-item dropdown" id="navbardrop5">
             <div class="nav-link dropdown-toggle"  data-toggle="dropdown" id="item1"></div>
             <div class="dropdown-menu" id="userdrop">
@@ -80,9 +80,9 @@
     </ul>
     <!--        右对齐-->
 
-    <div class="col-lg-auto">
-        <button type="button" class="btn btn-outline-primary " data-toggle="modal" data-target="#register_btn" id="register_button" >注册</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login_btn" id="login_button">登录</button>
+    <div class="col-md-3 text-end">
+        <button type="button" class="btn btn-outline-primary me-2" id="register_button" >注册</button>
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#login_btn">登录</button>
     </div>
 
 
@@ -128,75 +128,18 @@
         </div>
     </div>
 </div>
-
-/nav>
-<div class="modal fade" id="register_btn">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- 模态框头部 -->
-            <div class="modal-header">
-                <h4 class="modal-title">员工注册</h4>
-                <!--                关闭-->
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- 模态框主体 -->
-            <div class="modal-body">
-                <form action="" class="needs-validation" name="form2" >
-                    <div class="form-group">
-                        <label for="uname">Username:</label>
-                        <input type="text" class="form-control" id="uname2" placeholder="输入用户名" name="uname2" required>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="text" class="form-control" id="pwd2" placeholder="输入密码" name="pwd2" required>
-
-
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">姓名:</label>
-                        <input type="text" class="form-control" id="name2" placeholder="输入" name="name2" required>
-
-
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">职位:</label>
-                        <input type="text" class="form-control" id="rank2" placeholder="输入密码" name="rank2" required>
-
-
-                    </div>
-                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary" id="register_1">提交</button>
-                </form>
-            </div>
-
-            <!-- 模态框底部 -->
-            <!--            <div class="modal-footer">-->
-            <!--                <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>-->
-            <!--                <button type="button" class="btn btn-info" data-dismiss="modal">登录</button>-->
-            <!--            </div>-->
-
-        </div>
-    </div>
-</div>
 <br><br><br><br><br>
 <div class="col-lg-auto"  style="width: 25em ;margin:5em 10em 5em 20em">
     <form action="" name="form3">
         <div class="form-group">
-            <label for="sfzh3">身份证号:</label>
-            <input type="text" class="form-control" id="sfzh3" placeholder="输入身份证号" name="sfzh3" required>
+            <label for="sfzh3">房间编号:</label>
+            <input type="text" class="form-control" id="sfzh3" placeholder="输入房间编号" name="sfzh3" required>
         </div>
-        <button type="button" class="btn btn-primary" id="sfzcheck">查询</button>
+        <button type="button" class="btn btn-primary" id="sfzdel">删除</button>
     </form>
 </div>
 <div class="card bg-info text-white " id="card1">
-    <div class="card-body" id="item_21"></div>
-    <div class="card-body " id="item_22"></div>
-    <div class="card-body" id="item_23"></div>
-    <div class="card-body" id="item_24"></div>
-    <div class="card-body" id="item_25"></div>
+    已删除房间:<div class="card-body" id="item_21"></div>
 </div>
 
 
