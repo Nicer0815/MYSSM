@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-//新增DataController 大杂烩 大数据供前端使用
+
 @RestController
 @RequestMapping("/data")
 public class DataController {

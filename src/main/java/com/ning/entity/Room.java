@@ -2,12 +2,6 @@ package com.ning.entity;
 
 import java.io.Serializable;
 
-/**
- * (Room)实体类
- *
- * @author makejava
- * @since 2022-06-16 14:29:15
- */
 public class Room implements Serializable {
     private static final long serialVersionUID = -53368864116188445L;
     

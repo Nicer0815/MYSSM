@@ -38,4 +38,7 @@
     </delete>
 
 
+    <select id="queryByName" resultType="Customer">
+        select * from customer where name=#{name}
+    </select>
 </mapper>

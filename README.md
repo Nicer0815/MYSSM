@@ -322,9 +322,73 @@ INSERT INTO checkin (`checkinId`, `roomId`, `customerId`, `checkInDate`, `number
 INSERT INTO checkin (`checkinId`, `roomId`, `customerId`, `checkInDate`, `number`) VALUES ('20220616009', '206', '100020', '0000-00-00 00:00:00', '1');
 INSERT INTO checkin (`checkinId`, `roomId`, `customerId`, `checkInDate`, `number`) VALUES ('20220616010', '208', '100005', '0000-00-00 00:00:00', '1');
 
+
+
+
+
+
+
+INSERT INTO room VALUES ('211', '大床房', '入住', '230');
+INSERT INTO room VALUES ('212', '大床房', '入住', '230');
+INSERT INTO room VALUES ('213', '大床房', '入住', '230');
+INSERT INTO room VALUES ('111', '单人间', '入住', '150');
+INSERT INTO room VALUES ('112', '单人间', '入住', '150');
+INSERT INTO room VALUES ('113', '单人间', '空闲', '150');
+INSERT INTO room VALUES ('311', '豪华套房', '空闲', '500');
+INSERT INTO room VALUES ('312', '豪华套房', '空闲', '500');
+INSERT INTO room VALUES ('313', '豪华套房', '空闲', '500');
+INSERT INTO room VALUES ('314', '豪华套房', '空闲', '500');
+
+UPDATE checkin SET `checkInDate`='2022-06-17 11:12:21' WHERE `UUID`='12';
+UPDATE checkin SET `checkInDate`='2022-06-17 15:32:07' WHERE `UUID`='13';
+UPDATE checkin SET `checkInDate`='2022-06-17 18:30:33' WHERE `UUID`='14';
+UPDATE checkin SET `checkInDate`='2022-06-17 15:23:59' WHERE `UUID`='15';
+UPDATE checkin SET `checkInDate`='2022-06-17 22:47:11' WHERE `UUID`='16';
+UPDATE checkin SET `checkInDate`='2022-06-17 11:22:17' WHERE `UUID`='17';
+UPDATE checkin SET `checkInDate`='2022-06-17 18:40:34' WHERE `UUID`='18';
+UPDATE checkin SET `checkInDate`='2022-06-17 19:12:32' WHERE `UUID`='19';
+UPDATE checkin SET `checkInDate`='2022-06-17 21:06:25' WHERE `UUID`='20';
+UPDATE checkin SET `checkInDate`='2022-06-17 17:03:40' WHERE `UUID`='21';
+
+INSERT INTO customer VALUES ('100021', 'Lara', 'F', '22132134', '8');
+INSERT INTO customer VALUES ('100022', 'Kratos', 'M', '12432246', '1');
+INSERT INTO customer VALUES ('100023', 'Atreus', 'M', '13434543', '2');
+INSERT INTO customer VALUES ('100024', 'Link', 'M', '12343232', '7');
+INSERT INTO customer VALUES ('100025', 'Zelda', 'F', '25643234', '7');
+INSERT INTO customer VALUES ('100026', 'Tifa', 'F', '12453257', '5');
+INSERT INTO customer VALUES ('100027', 'Cloud', 'M', '78654345', '9');
+INSERT INTO customer VALUES ('100028', 'Yuffie', 'F', '64532426', '8');
+INSERT INTO customer VALUES ('100029', 'Aerith', 'F', '34641788', '8');
+INSERT INTO customer VALUES ('100030', 'Zack', 'M', '51823648', '9');
+
+UPDATE checkin SET `leaveDate`='2022-06-17 11:32:42' WHERE `UUID`='2';
+UPDATE checkin SET `leaveDate`='2022-06-17 12:45:24' WHERE `UUID`='3';
+UPDATE checkin SET `leaveDate`='2022-06-17 07:12:28' WHERE `UUID`='4';
+UPDATE checkin SET `leaveDate`='2022-06-17 10:54:42' WHERE `UUID`='5';
+UPDATE checkin SET `leaveDate`='2022-06-17 08:52:01' WHERE `UUID`='6';
+UPDATE checkin SET `leaveDate`='2022-06-17 15:17:23' WHERE `UUID`='7';
+UPDATE checkin SET `leaveDate`='2022-06-17 12:54:23' WHERE `UUID`='8';
+UPDATE checkin SET `leaveDate`='2022-06-17 13:34:52' WHERE `UUID`='9';
+UPDATE checkin SET `leaveDate`='2022-06-17 16:02:18' WHERE `UUID`='10';
+UPDATE checkin SET `leaveDate`='2022-06-17 17:26:43' WHERE `UUID`='11';
+
+INSERT INTO `order` VALUES ('20220617001', '111', '2022-06-17 07:43:23', '2022-06-18 09:00:00', '100026', '75.00');
+INSERT INTO `order` VALUES ('20220617002', '312', '2022-06-17 09:06:57', '2022-06-18 11:00:00', '100023', '100.00');
+INSERT INTO `order` VALUES ('20220617003', '212', '2022-06-17 10:40:12', '2022-06-18 12:00:00', '100028', '184.00');
+INSERT INTO `order` VALUES ('20220617004', '311', '2022-06-17 12:42:16', '2022-06-18 13:00:00', '100021', '400.00');
+INSERT INTO `order` VALUES ('20220617005', '112', '2022-06-17 14:59:23', '2022-06-18 15:00:00', '100030', '135.00');
+INSERT INTO `order` VALUES ('20220617006', '211', '2022-06-17 15:15:12', '2022-06-18 16:00:00', '100022', '23.00');
+INSERT INTO `order` VALUES ('20220617007', '213', '2022-06-17 17:32:54', '2022-06-18 19:00:00', '100029', '184.00');
+INSERT INTO `order` VALUES ('20220617008', '314', '2022-06-17 17:58:20', '2022-06-18 12:00:00', '100025', '350.00');
+INSERT INTO `order` VALUES ('20220617009', '113', '2022-06-17 18:35:05', '2022-06-18 07:00:00', '100027', '135.00');
+INSERT INTO `order` VALUES ('20220617010', '313', '2022-06-17 21:21:08', '2022-06-18 14:00:00', '100024', '350.00');
+
+
 ```
 
 # 3 前后端沟通
+
+其他琐碎的接口
 
 ### 大杂烩dataZone：
 
@@ -342,3 +406,35 @@ INSERT INTO checkin (`checkinId`, `roomId`, `customerId`, `checkInDate`, `number
 | restToday     | 当前入住数               | 当前时刻的“入住状态”                                         |
 |               |                          |                                                              |
 
+前后端对接注意事项：
+
+路径：logo.jepg和my.css
+
+
+
+订单相关操作：
+
+查询全部订单 返回 list
+
+查询今日订单 list
+
+特定查询 根据orderId 返回一个 order
+
+修改订单 传订单所有信息
+
+删除 传orderId
+
+增加订单 除了order.reserveDate 以及尽量传的order.checkinDate(拟入住) ，其他都传
+
+
+
+
+
+Nicer 9:30:19
+顾客相关的操作有
+ 根据名字检索顾客,返回list，
+根据customerId检索,返回customer,
+删除顾客，传给我customerId，我返回400和message，
+
+Nicer 9:30:52
+修改顾客，传入所有顾客的信息，我返回200/400和message

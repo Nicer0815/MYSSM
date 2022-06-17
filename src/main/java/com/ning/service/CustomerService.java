@@ -11,4 +11,6 @@ public interface CustomerService {
     Customer queryById(String customerId);
     int updateCustomer(Customer customer);
     List<Customer> queryAll();
+
+    List<Customer> queryByName(String name);
 }

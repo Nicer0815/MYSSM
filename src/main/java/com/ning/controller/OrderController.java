@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -38,21 +37,40 @@ public class OrderController {
         messageAndData.add("list",list).setMessage("返回order列表");
         return messageAndData;
     }
+    @RequestMapping(value = "/query",method = RequestMethod.GET)
+    public MessageAndData queryOrder(String orderId) {
+        MessageAndData messageAndData;
+        Order temp = orderService.queryById(orderId);
+        if(temp != null){
+            messageAndData = MessageAndData.success();
+            messageAndData.setMessage("订单已查到");
+            messageAndData.add("order",temp);
+
+        }else{
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("订单编号不存在");
+        }
+        return messageAndData;
+    }
+
+
     @RequestMapping(value = "/new",method = RequestMethod.GET)
-    public MessageAndData addOrder(String orderId,String roomId,String reserveDate,String checkinDate,String customerId,String price){
-        System.out.println("reserveDate:"+reserveDate);
-        System.out.println("checkinDate:"+checkinDate);
-        Order order = new Order(orderId,roomId,DateUtils.cstStringToDate(reserveDate),DateUtils.cstStringToDate(checkinDate),customerId,Double.valueOf(price));
+    public MessageAndData addOrder(String orderId,String roomId,String checkinDate,String customerId,String price){
+        System.out.println("reserveDate:");
+        System.out.println("checkinDate:");
+        Order order = new Order();
+        order.setOrderId(orderId);
+        order.setRoomId(roomId);
+        order.setCustomerId(customerId);
+        order.setPrice(Double.valueOf(price));
+
+        order.setCheckinDate(DateUtils.cstStringToDate(checkinDate));
+
+        //自动生成订单的创建时间
+        order.setReserveDate(DateUtils.newDate());
         MessageAndData messageAndData;
         //添加订单
-//        Order order = new Order();
-//        order.setOrderId("20220616002");
-//        order.setRoomId("101");
-//        order.setReserveDate(DateUtils.newDate());
-//        order.setCheckinDate(DateUtils.newDate());
-//        order.setCustomerId("100001");
-//        order.setPrice(180.0);
-//        orderService.addOrder(order);
+
         Order temp = orderService.queryById(orderId);
         if(temp != null){
             messageAndData = MessageAndData.error();
@@ -65,6 +83,56 @@ public class OrderController {
         return messageAndData;
     }
 
+    @RequestMapping(value = "/update",method = RequestMethod.GET)
+    public MessageAndData updateOrder(String orderId,String roomId,String checkinDate,String customerId,String price){
+        System.out.println("reserveDate:");
+        System.out.println("checkinDate:"+checkinDate);
+        Order order = new Order();
+        order.setOrderId(orderId);
+        order.setRoomId(roomId);
+        order.setCustomerId(customerId);
+        order.setPrice(Double.valueOf(price));
 
+        order.setCheckinDate(DateUtils.cstStringToDate(checkinDate));
+
+        //自动生成订单的创建时间
+        order.setReserveDate(DateUtils.newDate());
+        MessageAndData messageAndData;
+        //更新订单
+
+        Order temp = orderService.queryById(orderId);
+        if(temp != null){
+            messageAndData = MessageAndData.success();
+            messageAndData.setMessage("订单找到");
+            messageAndData.add("order",temp);
+            orderService.updateOrder(order);
+        }else{
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("未找到订单编号");
+        }
+        return messageAndData;
+    }
+
+    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    public MessageAndData deleteOrder(String orderId){
+
+        Order order = new Order();
+        order.setOrderId(orderId);
+
+        MessageAndData messageAndData;
+        //更新订单
+
+        Order temp = orderService.queryById(orderId);
+        if(temp != null){
+            messageAndData = MessageAndData.success();
+            messageAndData.setMessage("订单已删除");
+            //messageAndData.add("order",temp);
+            orderService.deleteOrder(order);
+        }else{
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("未找到订单编号");
+        }
+        return messageAndData;
+    }
 
 }

@@ -48,12 +48,31 @@ public class CheckinController {
         MessageAndData messageAndData;
         System.out.println("reserveDate:"+leaveDate);
         System.out.println("checkinDate:"+checkinDate);
-        //TODO 这里要处理下
+        //TODO 这里要处理下 日期格式不一定能匹配
         Checkin checkin = new Checkin(checkinId,roomId,customerId,DateUtils.cstStringToDate(checkinDate),
                 DateUtils.cstStringToDate(leaveDate),state,Integer.parseInt(number),0);
         checkinService.addCheckin(checkin);
         messageAndData = MessageAndData.success();
         messageAndData.setMessage("创建checkin成功");
+        return messageAndData;
+    }
+
+    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    public MessageAndData newCheckin(String UUID) {
+        MessageAndData messageAndData;
+
+
+        Checkin checkin = new Checkin();
+        checkin.setUUID(Integer.parseInt(UUID));
+        if (checkinService.queryById(UUID)==null){
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("没有查找到");
+        }else{
+            checkinService.deleteCheckin(checkin);
+            messageAndData = MessageAndData.success();
+            messageAndData.setMessage("删除checkin成功");
+        }
+
         return messageAndData;
     }
 

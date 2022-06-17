@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -42,9 +44,59 @@ public class CustomerController {
         return messageAndData;
     }
 
+    @RequestMapping(value = "/update",method = RequestMethod.GET)
+    public MessageAndData updateCustomer(String customerId,String name,String sex,String phoneNum,String discount) {
+        Customer customer = new Customer(customerId,name,sex,Integer.parseInt(phoneNum),Integer.parseInt(discount));
+        MessageAndData messageAndData;
+        Customer temp = customerService.queryById(customerId);
+        if(temp != null){
+            messageAndData = MessageAndData.success();
+            customerService.updateCustomer(customer);
+            messageAndData.setMessage("修改顾客信息成功");
+        }else {
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("customerId不存在");
+        }
+        return messageAndData;
+    }
+
+    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    public MessageAndData deleteCustomer(String customerId) {
+        Customer customer = new Customer();
+        customer.setCustomerId(customerId);
+        MessageAndData messageAndData;
+        Customer temp = customerService.queryById(customerId);
+        if(temp != null){
+            messageAndData = MessageAndData.success();
+            customerService.deleteCustomer(customer);
+            messageAndData.setMessage("删除顾客成功");
+        }else {
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("customerId不存在");
+        }
+        return messageAndData;
+    }
+
+
+    @RequestMapping(value = "/name",method = RequestMethod.GET)
+    public MessageAndData queryByName(String name) {
+        MessageAndData messageAndData;
+        List<Customer> list = customerService.queryByName(name);
+        if(list == null){
+            messageAndData = MessageAndData.error();
+            messageAndData.setMessage("查无此人");
+        }else{
+            messageAndData = MessageAndData.success();
+            messageAndData.setMessage("找到了");
+            messageAndData.add("list",list);
+        }
+        return messageAndData;
+    }
+
+
     @RequestMapping(value = "/query",method = RequestMethod.GET)
     public MessageAndData queryById(String customerId) {
-        MessageAndData messageAndData;
+         MessageAndData messageAndData;
         Customer customer = customerService.queryById(customerId);
         if(customer == null){
             messageAndData = MessageAndData.error();
